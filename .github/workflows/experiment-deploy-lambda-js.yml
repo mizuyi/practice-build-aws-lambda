@@ -37,3 +37,6 @@ jobs:
           runtime: nodejs20.x
           handler: index.handler
           role: ${{ env.AWS_ROLE_ARN }}
+
+      - name: Invoke Lambda function
+        run: aws lambda invoke --function-name practice-build-aws-lambda-function response.json && cat response.json
