@@ -1,0 +1,28 @@
+name: "Experiment: Login AWS with OIDC provider"
+
+on:
+  push:
+    branches:
+      - "experiment/oidc-provider"
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_ROLE_ARN: arn:aws:iam::677276120513:role/practice-build-aws-lambda
+  AWS_REGION: ap-northeast-1
+
+jobs:
+  login:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login AWS with OIDC provider
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Verify AWS credentials
+        run: |
+          aws sts get-caller-identity
