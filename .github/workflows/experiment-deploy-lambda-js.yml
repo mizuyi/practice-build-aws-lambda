@@ -27,7 +27,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Zip index.mjs
-        run: zip -j lambda.zip src/index.mjs
+        run: cd src && zip ../lambda.zip index.mjs
 
       - name: Deploy to Lambda
         uses: aws-actions/aws-lambda-deploy@v1
