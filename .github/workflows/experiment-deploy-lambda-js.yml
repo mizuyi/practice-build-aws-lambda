@@ -40,7 +40,7 @@ jobs:
         with:
           function-name: practice-build-aws-lambda-function
           code-artifacts-dir: src
-          runtime: nodejs20.x
+          runtime: nodejs24.x
           handler: index.handler
           role: ${{ env.AWS_ROLE_ARN }}
 
